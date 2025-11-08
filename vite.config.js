@@ -7,7 +7,7 @@ export default defineConfig({
     port: 3000,
     proxy: {
       '/graphql': {
-        target: 'http://localhost:4000',
+        target: 'https://koa-graphql-deepseek.zichengtang349.workers.dev',
         changeOrigin: true,
       }
     }
