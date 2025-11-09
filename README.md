@@ -9,7 +9,7 @@
 
 ## 🌐 在线体验
 
-**生产环境**: [https://chat-client.pages.dev/](https://chat-client.pages.dev/)
+**生产环境**: [https://laotangcode.shop/](https://laotangcode.shop/)
 
 ## ✨ 特性
 
