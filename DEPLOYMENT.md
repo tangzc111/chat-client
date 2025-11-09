@@ -4,7 +4,7 @@
 
 - **项目名称**: chat-client
 - **生产地址**: https://chat-client.pages.dev/
-- **后端 API**: https://koa-graphql-deepseek.zichengtang349.workers.dev/graphql
+- **后端 API**: https://chat-worker.zichengtang349.workers.dev/graphql
 
 ## 前置准备
 
@@ -95,7 +95,7 @@ API 端点配置:
 
 ```javascript
 const GRAPHQL_ENDPOINT = import.meta.env.VITE_GRAPHQL_ENDPOINT ||
-  'https://koa-graphql-deepseek.zichengtang349.workers.dev/graphql';
+  'https://chat-worker.zichengtang349.workers.dev/graphql';
 ```
 
 ## 环境变量配置
@@ -105,7 +105,7 @@ const GRAPHQL_ENDPOINT = import.meta.env.VITE_GRAPHQL_ENDPOINT ||
 创建 `.env` 文件(可选):
 
 ```bash
-VITE_GRAPHQL_ENDPOINT=https://koa-graphql-deepseek.zichengtang349.workers.dev/graphql
+VITE_GRAPHQL_ENDPOINT=https://chat-worker.zichengtang349.workers.dev/graphql
 ```
 
 ### Cloudflare Pages

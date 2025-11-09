@@ -1,6 +1,6 @@
 import { request, gql } from 'graphql-request';
 
-const GRAPHQL_ENDPOINT = import.meta.env.VITE_GRAPHQL_ENDPOINT || 'https://koa-graphql-deepseek.zichengtang349.workers.dev/graphql';
+const GRAPHQL_ENDPOINT = import.meta.env.VITE_GRAPHQL_ENDPOINT || 'https://chat-worker.zichengtang349.workers.dev/graphql';
 
 const CHAT_QUERY = gql`
   query Chat($message: String!) {

@@ -131,7 +131,7 @@ query Chat($message: String!) {
 项目默认使用以下 API 端点:
 
 ```
-https://koa-graphql-deepseek.zichengtang349.workers.dev/graphql
+https://chat-worker.zichengtang349.workers.dev/graphql
 ```
 
 #### 自定义 API 端点
@@ -180,7 +180,7 @@ VITE_GRAPHQL_ENDPOINT=https://your-api-server.com/graphql
 ## 🔗 相关项目
 
 - [后端服务器](https://github.com/tangzc111/koa-graphql-deepseek) - Koa + GraphQL + DeepSeek API
-- [后端部署](https://koa-graphql-deepseek.zichengtang349.workers.dev/graphql) - Cloudflare Workers 部署
+- [后端部署](https://chat-worker.zichengtang349.workers.dev/graphql) - Cloudflare Workers 部署
 
 ## 🚀 性能特性
 
