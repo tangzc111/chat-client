@@ -2,8 +2,8 @@
 
 ## 项目信息
 
-- **项目名称**: deepseek-chat-client
-- **生产地址**: https://deepseek-chat-client.pages.dev/
+- **项目名称**: chat-client
+- **生产地址**: https://chat-client.pages.dev/
 - **后端 API**: https://koa-graphql-deepseek.zichengtang349.workers.dev/graphql
 
 ## 前置准备
@@ -49,7 +49,7 @@ npm run deploy
 如果是首次部署,需要先创建项目:
 
 ```bash
-wrangler pages project create deepseek-chat-client --production-branch=main
+wrangler pages project create chat-client --production-branch=main
 ```
 
 ### 方式二:通过 Git 集成自动部署
@@ -72,7 +72,7 @@ wrangler pages project create deepseek-chat-client --production-branch=main
 Cloudflare Pages 项目配置:
 
 ```toml
-name = "deepseek-chat-client"
+name = "chat-client"
 compatibility_date = "2024-01-01"
 pages_build_output_dir = "dist"
 ```
@@ -137,7 +137,7 @@ VITE_GRAPHQL_ENDPOINT=https://koa-graphql-deepseek.zichengtang349.workers.dev/gr
    - 生成部署预览链接
 
 3. **部署完成**
-   - 获得唯一的部署 URL (如: `https://[hash].deepseek-chat-client.pages.dev`)
+   - 获得唯一的部署 URL (如: `https://[hash].chat-client.pages.dev`)
    - 主域名自动更新到最新部署
 
 ## 常见问题
@@ -191,7 +191,7 @@ npm install -g wrangler
 
 - 每次使用 CLI 部署都会创建新的预览链接
 - Git 集成模式下,每个分支/PR 都有独立的预览环境
-- 预览链接格式: `https://[hash].deepseek-chat-client.pages.dev`
+- 预览链接格式: `https://[hash].chat-client.pages.dev`
 
 ## 回滚部署
 

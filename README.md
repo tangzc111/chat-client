@@ -1,4 +1,4 @@
-# DeepSeek Chat Client
+# Chat Client
 
 一个现代化的 React + Vite 客户端，通过 GraphQL 与 DeepSeek AI 进行对话。
 
@@ -9,7 +9,7 @@
 
 ## 🌐 在线体验
 
-**生产环境**: [https://deepseek-chat-client.pages.dev/](https://deepseek-chat-client.pages.dev/)
+**生产环境**: [https://chat-client.pages.dev/](https://chat-client.pages.dev/)
 
 ## ✨ 特性
 
@@ -34,8 +34,8 @@
 
 ```bash
 # 克隆项目
-git clone https://github.com/tangzc111/deepseek-chat-client.git
-cd deepseek-chat-client
+git clone https://github.com/tangzc111/chat-client.git
+cd chat-client
 
 # 安装依赖
 npm install
@@ -74,7 +74,7 @@ npm run deploy
 ## 🏗️ 项目结构
 
 ```
-deepseek-chat-client/
+chat-client/
 ├── src/
 │   ├── api/
 │   │   └── chat.js           # GraphQL API 调用
