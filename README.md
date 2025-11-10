@@ -18,15 +18,13 @@
 - 🔄 实时 AI 对话功能
 - 📱 响应式设计，支持移动端
 - 🎯 使用 GraphQL 与后端通信
-- 💬 消息历史记录
-- ⌨️ 支持快捷键操作
 - 🚀 部署在 Cloudflare Pages，全球 CDN 加速
 
 ## 🚀 快速开始
 
 ### 前置要求
 
-- **开发环境**: Node.js 16+
+- **开发环境**: Node.js 20+
 - **部署环境**: Node.js 20+ (使用 Wrangler CLI)
 - 后端 GraphQL 服务器
 
@@ -69,8 +67,6 @@ npm run preview
 npm run deploy
 ```
 
-详细部署说明请查看 [DEPLOYMENT.md](DEPLOYMENT.md)
-
 ## 🏗️ 项目结构
 
 ```
@@ -79,8 +75,6 @@ chat-client/
 │   ├── api/
 │   │   └── chat.js           # GraphQL API 调用
 │   ├── components/
-│   │   ├── ChatHistory.jsx   # 聊天历史组件
-│   │   ├── ChatHistory.css
 │   │   ├── ChatInput.jsx     # 输入框组件
 │   │   └── ChatInput.css
 │   ├── App.jsx               # 主应用组件
@@ -95,7 +89,6 @@ chat-client/
 ├── wrangler.toml             # Cloudflare Pages 配置
 ├── package.json
 ├── README.md                 # 项目说明
-└── DEPLOYMENT.md             # 部署指南
 ```
 
 ## 🎯 功能说明
@@ -147,8 +140,6 @@ VITE_GRAPHQL_ENDPOINT=https://your-api-server.com/graphql
 1. 进入项目设置 > Environment variables
 2. 添加 `VITE_GRAPHQL_ENDPOINT` 变量
 
-详见 [DEPLOYMENT.md](DEPLOYMENT.md#环境变量配置)
-
 ## 📦 技术栈
 
 ### 前端框架
@@ -163,23 +154,9 @@ VITE_GRAPHQL_ENDPOINT=https://your-api-server.com/graphql
 - **Cloudflare Pages** - 全球 CDN 静态站点托管
 - **Wrangler** - Cloudflare 官方 CLI 工具
 
-## 🎨 界面预览
-
-### 主界面
-- 左侧边栏：历史对话列表
-- 顶部：渐变色标题栏
-- 中间：聊天消息区域
-- 底部：输入框和发送按钮
-
-### 设计特点
-- 渐变色主题（紫色到粉色）
-- 流畅的动画效果
-- 清晰的消息气泡设计
-- 加载状态动画
-
 ## 🔗 相关项目
 
-- [后端服务器](https://github.com/tangzc111/koa-graphql-deepseek) - Koa + GraphQL + DeepSeek API
+- [后端服务器](https://github.com/tangzc111/chat-worker) - Hono + GraphQL + DeepSeek API
 - [后端部署](https://chat-worker.zichengtang349.workers.dev/graphql) - Cloudflare Workers 部署
 
 ## 🚀 性能特性
@@ -210,38 +187,6 @@ VITE_GRAPHQL_ENDPOINT=https://your-api-server.com/graphql
 - `src/App.css` - 主应用样式
 - `src/components/*.css` - 组件样式
 
-## 🐛 故障排除
-
-### 无法连接到服务器
-
-确保后端 GraphQL 服务器正在运行并可访问。
-
-### 生产环境 405 错误
-
-**原因**: Vite 的 proxy 只在开发环境生效，生产环境需直接请求后端 API。
-
-**解决方案**: 已在 `src/api/chat.js` 中配置使用环境变量或默认后端 URL。
-
-### CORS 跨域问题
-
-确保后端 API 配置了正确的 CORS 响应头:
-
-```javascript
-Access-Control-Allow-Origin: *
-Access-Control-Allow-Methods: GET, POST, OPTIONS
-Access-Control-Allow-Headers: Content-Type
-```
-
-更多问题请查看 [DEPLOYMENT.md](DEPLOYMENT.md#常见问题)
-
 ## 📄 许可证
 
 MIT
-
-## 🤝 贡献
-
-欢迎提交 Issue 和 Pull Request！
-
-## 📞 联系方式
-
-如有问题，请提交 Issue 或联系维护者。

@@ -1,6 +1,5 @@
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { chatAPI } from './api/chat';
-import ChatHistory from './components/ChatHistory';
 import ChatInput from './components/ChatInput';
 import './App.css';
 
@@ -8,6 +7,7 @@ function App() {
   const [messages, setMessages] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+  const messagesEndRef = useRef(null);
 
   const handleSendMessage = async (inputMessage) => {
     if (!inputMessage.trim()) return;
@@ -40,38 +40,19 @@ function App() {
 
       setMessages((prev) => [...prev, aiMessage]);
     } catch (err) {
-      setError(err.message);
+      setError(err.message || '发送消息失败');
       console.error('发送消息失败:', err);
     } finally {
       setLoading(false);
     }
   };
 
-  const handleNewChat = () => {
-    setMessages([]);
-    setError(null);
-  };
+  useEffect(() => {
+    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+  }, [messages, loading]);
 
   return (
     <div className="app">
-      <div className="sidebar">
-        <div className="sidebar-header">
-          <h2>历史对话</h2>
-          <button className="btn-all" onClick={handleNewChat}>
-            + 新对话
-          </button>
-        </div>
-        <div className="history-list">
-          {messages.length === 0 ? (
-            <div className="empty-history">暂无对话历史</div>
-          ) : (
-            <div className="history-item active">
-              当前对话 ({messages.filter(m => m.type === 'user').length})
-            </div>
-          )}
-        </div>
-      </div>
-
       <div className="main-content">
         <div className="header">
           <h1>
@@ -80,7 +61,60 @@ function App() {
           </h1>
         </div>
 
-        <ChatHistory messages={messages} loading={loading} error={error} />
+        <div className="chat-content">
+          <div className="messages-container">
+            {messages.length === 0 && !loading && !error && (
+              <div className="empty-state">
+                <div className="empty-icon">💬</div>
+                <h3>开始对话</h3>
+                <p>在下方输入框中输入你的问题，开始与 AI 对话</p>
+              </div>
+            )}
+
+            {messages.map((message) => (
+              <div
+                key={message.id}
+                className={`message ${message.type === 'user' ? 'user-message' : 'ai-message'}`}
+              >
+                <div className="message-avatar">
+                  {message.type === 'user' ? '👤' : '🤖'}
+                </div>
+                <div className="message-content">
+                  <div className="message-text">{message.content}</div>
+                  {message.usage && (
+                    <div className="message-meta">
+                      <span className="meta-item">模型: {message.model}</span>
+                      <span className="meta-item">Tokens: {message.usage.totalTokens}</span>
+                    </div>
+                  )}
+                </div>
+              </div>
+            ))}
+
+            {loading && (
+              <div className="message ai-message">
+                <div className="message-avatar">🤖</div>
+                <div className="message-content">
+                  <div className="typing-indicator">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                  </div>
+                </div>
+              </div>
+            )}
+
+            {error && (
+              <div className="error-message">
+                <span className="error-icon">⚠️</span>
+                <span>{error}</span>
+              </div>
+            )}
+
+            <div ref={messagesEndRef} />
+          </div>
+        </div>
+
         <ChatInput onSendMessage={handleSendMessage} disabled={loading} />
       </div>
     </div>
