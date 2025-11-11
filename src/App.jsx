@@ -8,6 +8,7 @@ function App() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const messagesEndRef = useRef(null);
+  const conversationContextRef = useRef([]);
 
   const handleSendMessage = async (inputMessage) => {
     if (!inputMessage.trim()) return;
@@ -24,9 +25,11 @@ function App() {
     setLoading(true);
     setError(null);
 
+    const historyForAgent = conversationContextRef.current;
+
     try {
-      // 调用 GraphQL API
-      const response = await chatAPI.sendMessage(inputMessage);
+      // 调用 Chat Agent API
+      const response = await chatAPI.sendMessage(inputMessage, historyForAgent);
 
       // 添加 AI 回复
       const aiMessage = {
@@ -35,10 +38,21 @@ function App() {
         content: response.content,
         model: response.model,
         usage: response.usage,
+        metadata: response.metadata,
         timestamp: response.timestamp,
       };
 
       setMessages((prev) => [...prev, aiMessage]);
+
+      const updatedHistory = [
+        ...historyForAgent,
+        { role: 'user', content: inputMessage },
+        { role: 'assistant', content: response.content },
+      ];
+
+      conversationContextRef.current = response.metadata?.shouldMaintainContext
+        ? updatedHistory
+        : [];
     } catch (err) {
       setError(err.message || '发送消息失败');
       console.error('发送消息失败:', err);
@@ -66,8 +80,8 @@ function App() {
             {messages.length === 0 && !loading && !error && (
               <div className="empty-state">
                 <div className="empty-icon">💬</div>
-                <h3>开始对话</h3>
-                <p>在下方输入框中输入你的问题，开始与 AI 对话</p>
+                <p>我是一名剧本速写师，擅长围绕用户提供的想法，在当前时间语境下创作简短的场景小剧本</p>
+                <p>在下方输入框中输入你的问题，开始创作</p>
               </div>
             )}
 
