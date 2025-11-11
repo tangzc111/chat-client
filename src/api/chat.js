@@ -1,6 +1,6 @@
 const AGENT_ENDPOINT =
-  // "https://laotang-mastra-app.zichengtang349.workers.dev/api/scene-script";
-  "http://localhost:4111/api/agents/sceneScriptAgent/generate";
+  "https://laotang-mastra-app.zichengtang349.workers.dev/api/scene-script";
+  // "http://localhost:4111/api/agents/sceneScriptAgent/generate";
 
 const RUN_ID = "sceneScriptAgent";
 const DEFAULT_RESOURCE_ID = "sceneScriptAgent";
