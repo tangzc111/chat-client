@@ -102,10 +102,7 @@ async function callChatAgent(message, history) {
     throw new Error("消息内容不能为空");
   }
 
-  const messages = [
-    ...sanitizedHistory,
-    { role: "user", content: userParts[0].text },
-  ];
+  const messages = [...sanitizedHistory, { role: "user", content: userParts }];
 
   const threadId = persistedThreadId ?? createThreadId();
   if (!persistedThreadId) {
